@@ -29,6 +29,12 @@ buttonRef.addEventListener('click', () => {
     fetch(`https://api.github.com/users/${inputRef.value}`)
     .then(response => response.json())
     .then(data => {
+
+          if (data.status === "404") {
+            roastBox.textContent = "User not found. Double-check the spelling before blaming me";
+            return;
+        }
+
        let roast = generateRoast(data);
        roastBox.textContent = roast;
     })
